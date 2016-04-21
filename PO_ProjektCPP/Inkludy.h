@@ -1,0 +1,11 @@
+#pragma once
+#include "Antylopa.h"
+#include "Czlowiek.h"
+#include "Jagody.h"
+#include "Guarana.h"
+#include "Mlecz.h"
+#include "Trawa.h"
+#include "Lis.h"
+#include "Zolw.h"
+#include "Owca.h"
+#include "Wilk.h"
