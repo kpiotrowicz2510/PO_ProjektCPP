@@ -3,6 +3,7 @@
 
 int main()
 {
+	//GITSAVE
 	Swiat *swiat = new Swiat();
 	(*swiat).spawnObjects();
 	(*swiat).updateLoop();
