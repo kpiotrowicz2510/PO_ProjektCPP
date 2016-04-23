@@ -1,6 +1,5 @@
 #include "Antylopa.h"
 
-
 namespace Zwierzeta {
 	Antylopa::Antylopa(Swiat &swiat)
 	{

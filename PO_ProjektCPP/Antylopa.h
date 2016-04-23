@@ -11,4 +11,3 @@ namespace Zwierzeta {
 		void kolizja();
 	};
 }
-

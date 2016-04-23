@@ -1,5 +1,4 @@
 #include "Wilk.h"
-
 namespace Zwierzeta {
 
 	Wilk::Wilk(Swiat &swiat)

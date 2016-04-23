@@ -1,6 +1,5 @@
 #include "Czlowiek.h"
 
-
 namespace Zwierzeta {
 	Czlowiek::Czlowiek(Swiat &swiat)
 	{

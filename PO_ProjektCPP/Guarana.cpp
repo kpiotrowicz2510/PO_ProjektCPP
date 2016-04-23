@@ -1,5 +1,4 @@
 #include "Guarana.h"
-
 namespace Rosliny {
 
 	Guarana::Guarana(Swiat &swiat)

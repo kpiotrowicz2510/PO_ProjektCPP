@@ -1,6 +1,5 @@
 #include "Zolw.h"
 
-
 namespace Zwierzeta {
 	Zolw::Zolw(Swiat &swiat)
 	{
