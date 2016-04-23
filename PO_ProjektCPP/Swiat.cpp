@@ -7,8 +7,8 @@ Swiat::Swiat()
 	textmode(C80);
 	srand(time(NULL));
 	this->new_id = 0;
-	this->org_c = new char[RX*RY];
-	for (int i = 0; i < RX*RY; i++)
+	this->org_c = new char[this->sRX*this->sRY];
+	for (int i = 0; i < this->sRX*this->sRY; i++)
 	{
 		this->org_c[i] = ' ';
 	}
@@ -117,17 +117,17 @@ void Swiat::wykonajTure(int key)
 		this->pressed_key = 4;
 		break;
 	}
-	for (int i = 0; i < RX*RY; i++)
+	for (int i = 0; i < this->sRX*this->sRY; i++)
 	{
 		this->org_c[i] = ' ';
 	}
 	for (int i = 0; i < this->organizmy.size(); i++) {
 		this->organizmy[i]->akcja();
-		if (this->org_c[this->organizmy[i]->GetY() * RX + this->organizmy[i]->GetX()] != ' ') {
+		if (this->org_c[this->organizmy[i]->GetY() * this->sRX + this->organizmy[i]->GetX()] != ' ') {
 			this->organizmy[i]->kolizja();
 		}
 		else {
-			this->org_c[this->organizmy[i]->GetY() * RX + this->organizmy[i]->GetX()] = this->organizmy[i]->GetSymbol();
+			this->org_c[this->organizmy[i]->GetY() * this->sRX + this->organizmy[i]->GetX()] = this->organizmy[i]->GetSymbol();
 		}
 	}
 	this->tura_numer++;
@@ -138,15 +138,15 @@ void Swiat::rysujSwiat()
 	clrscr();
 	int hx = 0;
 	int hy = 0;
-	for (int i = 0; i < (RX + 1)*(RY + 2); i++)
+	for (int i = 0; i < (this->sRX + 1)*(this->sRY + 2); i++)
 	{
-		if (hx == 0 || hy == 0 || hx == RX || hy == RY + 1) {
+		if (hx == 0 || hy == 0 || hx == this->sRX || hy == this->sRY + 1) {
 			gotoxy(hx + 1, hy + 1);
 			putch('#');
 		}
 
 		hx++;
-		if (hx > RX) {
+		if (hx > this->sRX) {
 			hy++;
 			hx = 0;
 		}
@@ -161,18 +161,18 @@ void Swiat::rysujSwiat()
 	string f = "Sila czlowieka: ";
 	f += x;
 
-	this->Napis(RX + 10, 0, "Krzysztof Piotrowicz 160873");
-	this->Napis(RX + 10, 2, f);
-	this->Napis(RX + 10, 4, "Ostatnie wydarzenia w swiecie:");
+	this->Napis(this->sRX + 10, 0, "Krzysztof Piotrowicz 160873");
+	this->Napis(this->sRX + 10, 2, f);
+	this->Napis(this->sRX + 10, 4, "Ostatnie wydarzenia w swiecie:");
 	int o = 6;
 
 	for (int i = this->info.size() - 1; i > this->info.size() - 15; i--) {
-		this->Napis(RX + 10, o, this->info[i]);
+		this->Napis(this->sRX + 10, o, this->info[i]);
 		o++;
 	}
 }
 bool Swiat::freeSpace(int x, int y) {
-	if (this->org_c[y * RX + x] != ' ') {
+	if (this->org_c[y * this->sRX + x] != ' ') {
 		return false;
 	}
 	return true;
@@ -189,7 +189,7 @@ point Swiat::freeSpaceP(int x2, int y2) {
 	}
 	for (int y = -1 + ys; y < 2 + ys; y++) {
 		for (int x = -1 + xs; x < 2 + xs; x++) {
-			if (this->org_c[(y2 + y)*RX + (x2 + x)] == ' ') {
+			if (this->org_c[(y2 + y)*this->sRX + (x2 + x)] == ' ') {
 				point *xz = new point();
 				(*xz).x = x2 + x;
 				(*xz).y = y2 + y;
@@ -210,14 +210,14 @@ Organizm* Swiat::podajOrganizm(int x, int y) {
 }
 
 void Swiat::addOrganizm(Organizm * o) {
-	int x = rand() % RX;
-	int y = rand() % RY;
+	int x = rand() % this->sRX;
+	int y = rand() % this->sRY;
 	o->SetX(x);
 	o->SetY(y);
 	if (this->freeSpace(x, y) == false) {
 		return;
 	}
-	this->org_c[(y)*RX + (x)] = o->GetSymbol();
+	this->org_c[(y)*this->sRX + (x)] = o->GetSymbol();
 	o->SetID(this->new_id);
 	this->new_id++;
 	this->organizmy.push_back(o);
@@ -235,7 +235,7 @@ void Swiat::addOrganizm(Organizm * o, int x, int y) {
 		s += o->GetSymbol();
 		this->info.push_back(s);
 	}
-	this->org_c[(y)*RX + (x)] = o->GetSymbol();
+	this->org_c[(y)*this->sRX + (x)] = o->GetSymbol();
 	o->SetID(this->new_id);
 	this->new_id++;
 	this->organizmy.push_back(o);
@@ -281,9 +281,9 @@ void Swiat::zapiszSwiat() {
 	ofstream outfile;
 	outfile.open(filename);
 	string dane = "";
-	dane.append(to_string(RX));
-	dane.append(";");
-	dane.append(to_string(RY));
+	dane.append(to_string(this->sRX));
+	dane.append("\t");
+	dane.append(to_string(this->sRY));
 
 	outfile << to_string(this->new_id) << "\t" << to_string(this->tura_numer) << endl;
 
@@ -301,8 +301,8 @@ void Swiat::zapiszSwiat() {
 }
 void Swiat::wczytajSwiat() {
 	this->organizmy.clear();
-	this->org_c = new char[RX*RY];
-	for (int i = 0; i < RX*RY; i++)
+	this->org_c = new char[this->sRX*this->sRY];
+	for (int i = 0; i < this->sRX*this->sRY; i++)
 	{
 		this->org_c[i] = ' ';
 	}
@@ -417,4 +417,12 @@ void Swiat::wczytajSwiat() {
 	infile.close();
 	string s = "Wczytano stan z pliku!";
 	this->info.push_back(s);
+}
+
+int Swiat::GetRX() {
+	return this->sRX;
+}
+
+int Swiat::GetRY() {
+	return this->sRY;
 }

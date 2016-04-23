@@ -7,8 +7,6 @@
 #include <iterator>
 #include "Organizm.h"
 
-#define RX 40
-#define RY 20
 #define filename "swiat.txt"
 using namespace std;
 
@@ -41,10 +39,14 @@ public:
 	void addInfo(string s);
 	void spawnObjects();
 	void updateLoop();
+	int GetRX();
+	int GetRY();
 private:
 	Organizm * czlowiek;
 	int new_id;
 	char *org_c;
+	int sRX;
+	int sRY;
 protected:
 	vector <string> info;
 };

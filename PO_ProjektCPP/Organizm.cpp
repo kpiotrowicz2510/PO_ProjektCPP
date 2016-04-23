@@ -14,13 +14,13 @@ int Organizm::GetLastY() { return this->last_posY; }
 int Organizm::GetX() { return this->posX; }
 int Organizm::GetY(){ return this->posY; }
 void Organizm::SetX(int value){
-	if (value > -1 && value < RX-1) {
+	if (value > -1 && value < this->GetSwiat()->GetRX()-1) {
 		this->last_posX = this->posX;
 		this->posX = value;
 	}
 }
 void Organizm::SetY(int value){
-	if (value > -1 && value < RY) {
+	if (value > -1 && value < this->GetSwiat()->GetRY()) {
 		this->last_posY = this->posY;
 		this->posY = value;
 	}

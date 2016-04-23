@@ -40,7 +40,7 @@ void Czlowiek::akcja() {
 			return;
 		}
 	}
-	if(x + 1 <= RX){
+	if(x + 1 <= this->GetSwiat()->GetRX()){
 		if (key == 3) {
 			this->SetX(gx + 1);
 			return;
@@ -52,7 +52,7 @@ void Czlowiek::akcja() {
 			return;
 		}
 	}
-	if(y + 1 <= RY){
+	if(y + 1 <= this->GetSwiat()->GetRY()){
 		if (key == 1) {
 			this->SetY(gy + 1);
 			return;
