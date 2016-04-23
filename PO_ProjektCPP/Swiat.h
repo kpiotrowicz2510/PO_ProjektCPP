@@ -41,12 +41,12 @@ public:
 	void updateLoop();
 	int GetRX();
 	int GetRY();
+protected:
+	vector <string> info;
 private:
 	Organizm * czlowiek;
 	int new_id;
 	char *org_c;
 	int sRX;
 	int sRY;
-protected:
-	vector <string> info;
 };
