@@ -1,6 +1,7 @@
 #include "Inkludy.h"
 
-
+using namespace Zwierzeta;
+using namespace Rosliny;
 
 Swiat::Swiat()
 {
@@ -454,10 +455,18 @@ void Swiat::wczytajSwiat() {
 	this->info.push_back(s);
 }
 
-int Swiat::GetRX() {
+const int Swiat::GetRX() {
 	return this->sRX;
 }
 
-int Swiat::GetRY() {
+const int Swiat::GetRY() {
 	return this->sRY;
+}
+
+const int Swiat::GetTura() {
+	return this->tura_numer;
+}
+
+const int Swiat::GetPressedKey() {
+	return this->pressed_key;
 }

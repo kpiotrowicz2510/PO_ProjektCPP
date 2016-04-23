@@ -9,10 +9,10 @@ void Organizm::SetSwiat(Swiat &swiat) {
 	this->SetY(0);
 	this->SetSila(0);
 }
-int Organizm::GetLastX() { return this->last_posX; }
-int Organizm::GetLastY() { return this->last_posY; }
-int Organizm::GetX() { return this->posX; }
-int Organizm::GetY(){ return this->posY; }
+const int Organizm::GetLastX() { return this->last_posX; }
+const int Organizm::GetLastY() { return this->last_posY; }
+const int Organizm::GetX() { return this->posX; }
+const int Organizm::GetY(){ return this->posY; }
 void Organizm::SetX(int value){
 	if (value > -1 && value < this->GetSwiat()->GetRX()-1) {
 		this->last_posX = this->posX;
@@ -34,10 +34,10 @@ int Organizm::GetSila() const {
 void Organizm::SetID(int id) {
 	this->id = id;
 }
-int Organizm::GetID() {
+const int Organizm::GetID() {
 	return this->id;
 }
-char Organizm::GetSymbol() {
+const char Organizm::GetSymbol() {
 	return this->symbol;
 }
 void Organizm::SetSymbol(const char symbol) {

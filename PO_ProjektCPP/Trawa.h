@@ -1,10 +1,11 @@
 #pragma once
 #include "Roslina.h"
-class Trawa :
-	public Roslina
-{
-public:
-	Trawa(Swiat &swiat);
-	~Trawa();
-};
-
+namespace Rosliny {
+	class Trawa :
+		public Roslina
+	{
+	public:
+		Trawa(Swiat &swiat);
+		~Trawa();
+	};
+}

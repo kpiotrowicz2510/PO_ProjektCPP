@@ -19,8 +19,6 @@ class Swiat
 {
 public:
 	vector <Organizm*> organizmy;
-	int tura_numer;
-	int pressed_key = 0;
 	Swiat();
 	~Swiat();
 	void wykonajTure(int key);
@@ -39,8 +37,10 @@ public:
 	void addInfo(string s);
 	void spawnObjects();
 	void updateLoop();
-	int GetRX();
-	int GetRY();
+	const int GetRX();
+	const int GetRY();
+	const int GetTura();
+	const int GetPressedKey();
 protected:
 	vector <string> info;
 private:
@@ -49,4 +49,6 @@ private:
 	char *org_c;
 	int sRX;
 	int sRY;
+	int tura_numer;
+	int pressed_key = 0;
 };

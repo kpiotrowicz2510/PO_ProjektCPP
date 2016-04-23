@@ -3,24 +3,25 @@
 #include <iostream>
 #include "Swiat.h"
 class Swiat;
+
 class Organizm
 {
 public:
-	int GetX();
-	int GetY();
+	const int GetX();
+	const int GetY();
 	Swiat* GetSwiat();
-	char GetSymbol();
+	const char GetSymbol();
 	void SetSymbol(char symbol);
 	void SetID(int id);
-	int GetID();
+	const int GetID();
 	void SetX(int value);
 	void SetY(int value);
 	void SetSwiat(Swiat &swiat);
 	void SetSila(int value);
 	int GetSila() const;
 	int GetInicjatywa() const;
-	int Organizm::GetLastX();
-	int Organizm::GetLastY();
+	const int GetLastX();
+	const int GetLastY();
 	virtual void akcja()=0;
 	virtual void kolizja()=0;
 	void rysowanie() {
