@@ -4,9 +4,36 @@
 
 Swiat::Swiat()
 {
-	textmode(C80);
 	srand(time(NULL));
 	this->new_id = 0;
+	textmode(C80);
+	cout << "Podaj rozmiar swiata \nX:\n";
+	int x, y;
+	char *h = new char[3];
+	int a=0;
+	int i = 0;
+	do {
+		a = getch();
+		putch(a);
+		h[i] = (char)a;
+		i++;
+	}
+	while (h[i-1]!='\r');
+	x = atoi(h);
+	putch('\n');
+	h = new char[3];
+	i = 0;
+	a = 0;
+	cout << "Y:\n";
+	do {
+		a = getch();
+		putch(a);
+		h[i] = (char)a;
+		i++;
+	} while (h[i - 1] != '\r');
+	y = atoi(h);
+	this->sRX = x;
+	this->sRY = y;
 	this->org_c = new char[this->sRX*this->sRY];
 	for (int i = 0; i < this->sRX*this->sRY; i++)
 	{
@@ -281,9 +308,11 @@ void Swiat::zapiszSwiat() {
 	ofstream outfile;
 	outfile.open(filename);
 	string dane = "";
-	dane.append(to_string(this->sRX));
+	dane.append(to_string(this->GetRX()));
 	dane.append("\t");
-	dane.append(to_string(this->sRY));
+	dane.append(to_string(this->GetRY()));
+
+	outfile << dane << endl;
 
 	outfile << to_string(this->new_id) << "\t" << to_string(this->tura_numer) << endl;
 
@@ -301,11 +330,6 @@ void Swiat::zapiszSwiat() {
 }
 void Swiat::wczytajSwiat() {
 	this->organizmy.clear();
-	this->org_c = new char[this->sRX*this->sRY];
-	for (int i = 0; i < this->sRX*this->sRY; i++)
-	{
-		this->org_c[i] = ' ';
-	}
 	ifstream infile;
 	infile.open(filename);
 	char data[1000];
@@ -313,8 +337,19 @@ void Swiat::wczytajSwiat() {
 
 
 	int nid, tura, ilosc;
+	int rx, ry;
+	infile >> rx >> ry;
+	
+	this->sRX = rx;
+	this->sRY = ry;
+
 	infile >> nid >> tura >> ilosc;
 
+	this->org_c = new char[this->sRX*this->sRY];
+	for (int i = 0; i < this->sRX*this->sRY; i++)
+	{
+		this->org_c[i] = ' ';
+	}
 
 	while (linia < ilosc) {
 		int id, inic, sila, x, y;
