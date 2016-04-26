@@ -19,6 +19,7 @@ namespace Zwierzeta {
 
 	void Zwierze::kolizja() {
 		Organizm *org = this->GetSwiat()->podajOrganizm(this->GetX(), this->GetY());
+		
 		if (this->GetSwiat()->freeSpace(this->GetX(), this->GetY()) == false) {
 			if (this->GetID() != org->GetID()) {
 				if (org->GetSymbol() == this->GetSymbol()) {
@@ -44,7 +45,7 @@ namespace Zwierzeta {
 			}
 		}
 		catch (exception e) {
-			this->GetSwiat()->addInfo("Brak pustego miejsca!");
+			this->GetSwiat()->addInfo("Wyjatek: Brak pustego miejsca!");
 		}
 	}
 

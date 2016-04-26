@@ -8,6 +8,5 @@ namespace Rosliny {
 		Mlecz(Swiat &swiat);
 		~Mlecz();
 		void akcja(); //3 proby rozprzestrzeniania w 1  turze
-		void kolizja() {}
 	};
 }

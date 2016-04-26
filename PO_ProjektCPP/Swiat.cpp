@@ -10,29 +10,46 @@ Swiat::Swiat()
 	textmode(C80);
 	cout << "Podaj rozmiar swiata \nX:\n";
 	int x, y;
-	char *h = new char[3];
-	int a=0;
-	int i = 0;
-	do {
-		a = getch();
-		putch(a);
-		h[i] = (char)a;
-		i++;
+	try {
+		char *h = new char[3];
+		int a = 0;
+		int i = 0;
+		do {
+			a = getch();
+			putch(a);
+			h[i] = (char)a;
+			i++;
+		} while (h[i - 1] != '\r');
+		x = atoi(h);
+		if (x > 50) {
+			throw (RozmiarException("X"));
+		}
+		putch('\n');
+		h = new char[3];
+		i = 0;
+		a = 0;
+		cout << "Y:\n";
+		do {
+			a = getch();
+			putch(a);
+			h[i] = (char)a;
+			i++;
+		} while (h[i - 1] != '\r');
+		y = atoi(h);
+		if (y > 25) {
+			throw (RozmiarException("Y"));
+		}
 	}
-	while (h[i-1]!='\r');
-	x = atoi(h);
-	putch('\n');
-	h = new char[3];
-	i = 0;
-	a = 0;
-	cout << "Y:\n";
-	do {
-		a = getch();
-		putch(a);
-		h[i] = (char)a;
-		i++;
-	} while (h[i - 1] != '\r');
-	y = atoi(h);
+	catch (RozmiarException &e) {
+		string s = "Nieprawidlowy wymiar ";
+		s.append(e.getMessage());
+		this->addInfo(s);
+		this->addInfo("Ustawianie domyslnych wartosci");
+		x = 20;
+		y = 20;
+	}
+
+
 	this->sRX = x;
 	this->sRY = y;
 	this->org_c = new char[this->sRX*this->sRY];
@@ -259,9 +276,10 @@ void Swiat::addOrganizm(Organizm * o, int x, int y) {
 	o->SetY(y);
 
 	if (this->freeSpace(x, y) == false) {
-		string s = "Nie mozna utworzyc nowego organizmu!- ";
-		s += o->GetSymbol();
-		this->info.push_back(s);
+		//string s = "Nie mozna utworzyc nowego organizmu!- ";
+		//s += o->GetSymbol();
+		//this->info.push_back(s);
+		throw new exception("");
 	}
 	this->org_c[(y)*this->sRX + (x)] = o->GetSymbol();
 	o->SetID(this->new_id);

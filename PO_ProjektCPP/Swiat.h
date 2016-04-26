@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iterator>
 #include "Organizm.h"
+#include "RozmiarException.h"
 
 #define filename "swiat.txt"
 using namespace std;
