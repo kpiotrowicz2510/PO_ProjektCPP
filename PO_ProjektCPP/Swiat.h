@@ -19,7 +19,6 @@ struct point {
 class Swiat
 {
 public:
-	vector <Organizm*> organizmy;
 	Swiat();
 	~Swiat();
 	void wykonajTure(int key);
@@ -46,6 +45,7 @@ protected:
 	vector <string> info;
 private:
 	Organizm * czlowiek;
+	vector <Organizm*> organizmy;
 	int new_id;
 	char *org_c;
 	int sRX;

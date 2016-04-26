@@ -276,9 +276,6 @@ void Swiat::addOrganizm(Organizm * o, int x, int y) {
 	o->SetY(y);
 
 	if (this->freeSpace(x, y) == false) {
-		//string s = "Nie mozna utworzyc nowego organizmu!- ";
-		//s += o->GetSymbol();
-		//this->info.push_back(s);
 		throw new exception("");
 	}
 	this->org_c[(y)*this->sRX + (x)] = o->GetSymbol();
